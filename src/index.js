@@ -99,7 +99,7 @@ class Game extends React.Component {
     const history = this.state.history;
     const current = history[this.state.stepNumber];
     const winner = calculateWinner(current.squares);
-
+   
     const moves = history.map((step, move) => {
       const desc = move ?
       'Go to move #' + move :
@@ -158,10 +158,51 @@ function calculateWinner(squares) {
   return null;
 }
 
+class Clock extends React.Component {
+  constructor(props){
+    super(props);
+    this.state = {date: new Date()};
+  }
+  
+  componentDidMount(){
+      this.timerID = setInterval(
+        () => this.tick(),
+        1000
+      )
+  }
+
+  componentWillUnmount(){
+    clearInterval(this.timerID);
+  }
+
+  tick() {
+    this.setState({
+      date: new Date()
+    });
+  }
+
+  render() {
+    return (
+      <div>
+        <h1>Hello, players!</h1>
+        <h2>It is {this.state.date.toLocaleTimeString()}.</h2>
+      </div>
+    );
+  }
+}
+
 // ========================================
 
 ReactDOM.render(
-  <Game />,
+  <div>
+    <Clock />
+    <Game />
+  </div>,
   document.getElementById('root')
 );
+
+/*ReactDOM.render(
+  <Clock />,
+  document.getElementById('root')
+);*/
 
