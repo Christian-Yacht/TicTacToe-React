@@ -194,13 +194,15 @@ class Clock extends React.Component {
 // ========================================
 
 ReactDOM.render(
-  <Game />,
-  //<Clock />,
+  <div>
+    <Clock />
+    <Game />
+  </div>,
   document.getElementById('root')
 );
 
-ReactDOM.render(
+/*ReactDOM.render(
   <Clock />,
   document.getElementById('root')
-);
+);*/
 
